@@ -1,12 +1,13 @@
 package com.example.administrator.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.coder.zzq.smartshow.SmartToast;
+
+import com.coder.zzq.smartshow.toast.SmartToast;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarView;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCalendarSelect(Calendar calendar, boolean isClick) {
                 ChooseManager.setCurSeletedCalendar(calendar,isClick);
-                SmartToast.show("重置成功");
+                SmartToast.success("重置成功");
             }
         });
 
