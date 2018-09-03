@@ -28,14 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCalendarSelect(Calendar calendar, boolean isClick) {
+                if (ChooseManager.needDrawRangeSelected() && ChooseManager.isDrawed()){
+                    ChooseManager.resetDrawRange();
+                }
                 ChooseManager.setCurSeletedCalendar(calendar,isClick);
-                SmartToast.success("重置成功");
             }
         });
 
     }
 
-    public void onViewClick(View view) {
-        SmartToast.show("重置成功");
-    }
 }

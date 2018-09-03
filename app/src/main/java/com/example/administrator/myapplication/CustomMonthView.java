@@ -94,6 +94,19 @@ public class CustomMonthView extends MonthView {
             d.draw(canvas);
         }
 
+        if (ChooseManager.needDrawRangeSelected()){
+            if (ChooseManager.isCellNeedDraw(calendar))
+
+            if (ChooseManager.getCurSelected().equals(calendar)){
+                Drawable d = ChooseManager.getSelectedDrawable();
+                d.setBounds(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding);
+                d.draw(canvas);
+            }
+            ChooseManager.hasDraw(true);
+        }
+
+
+
         int cx = x + mItemWidth / 2;
         int top = y - mItemHeight / 6;
 
@@ -122,6 +135,7 @@ public class CustomMonthView extends MonthView {
                     calendar.isCurrentDay() ? mCurDayLunarTextPaint :
                             calendar.isCurrentMonth() ? mCurMonthLunarTextPaint : mOtherMonthLunarTextPaint);
         }
+
     }
 
 }
