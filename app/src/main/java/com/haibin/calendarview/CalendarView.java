@@ -27,10 +27,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.administrator.myapplication.R;
 
 import java.lang.reflect.Constructor;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -228,6 +230,7 @@ public class CalendarView extends FrameLayout {
         });
         mSelectLayout.setup(mDelegate);
         mWeekPager.updateSelected(mDelegate.createCurrentDate(), false);
+        mWeekBar.setVisibility(GONE);
     }
 
     /**
@@ -303,7 +306,6 @@ public class CalendarView extends FrameLayout {
     public int getCurYear() {
         return mDelegate.getCurrentDay().getYear();
     }
-
 
     /**
      * 打开日历年月份快速选择
@@ -1229,6 +1231,10 @@ public class CalendarView extends FrameLayout {
         return mDelegate != null && CalendarUtil.isCalendarInRange(calendar, mDelegate);
     }
 
+    public WeekBar getWeekBar() {
+        return mWeekBar;
+    }
+
 
     /**
      * 年份视图切换事件，快速年份切换
@@ -1366,5 +1372,9 @@ public class CalendarView extends FrameLayout {
         boolean onCalendarIntercept(Calendar calendar);
 
         void onCalendarInterceptClick(Calendar calendar, boolean isClick);
+    }
+
+    public CalendarViewDelegate getDelegate() {
+        return mDelegate;
     }
 }

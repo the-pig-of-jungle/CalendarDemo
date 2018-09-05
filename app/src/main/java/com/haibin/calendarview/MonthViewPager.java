@@ -111,6 +111,9 @@ public final class MonthViewPager extends ViewPager {
 
             @Override
             public void onPageSelected(int position) {
+
+                onPageScrolled(position,1,0);
+
                 Calendar calendar = CalendarUtil.getFirstCalendarFromMonthViewPager(position, mDelegate);
                 mDelegate.mIndexCalendar = calendar;
                 //月份改变事件
@@ -446,12 +449,12 @@ public final class MonthViewPager extends ViewPager {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return mDelegate.isMonthViewScrollable() && super.onTouchEvent(ev);
+        return false && super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return mDelegate.isMonthViewScrollable() && super.onInterceptTouchEvent(ev);
+        return false && super.onInterceptTouchEvent(ev);
     }
 
     @Override

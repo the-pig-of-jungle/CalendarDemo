@@ -165,7 +165,15 @@ public final class Calendar implements Serializable {
 
 
     public String getLunar() {
-        return lunar;
+        switch (getDay()){
+            case 6:
+                return "2题";
+            case 7:
+                return "20题";
+            case 9:
+                return "20题";
+        }
+        return "";
     }
 
     public void setLunar(String lunar) {
@@ -381,6 +389,26 @@ public final class Calendar implements Serializable {
         setSchemeColor(0);
         setSchemes(null);
     }
+
+    public static Calendar get() {
+        return new Calendar();
+    }
+
+    public Calendar year(int newYear) {
+        year = newYear;
+        return this;
+    }
+
+    public Calendar month(int newMonth) {
+        month = newMonth;
+        return this;
+    }
+
+    public Calendar day(int newDay){
+        day = newDay;
+        return this;
+    }
+
 
     /**
      * 事件标记服务，现在多类型的事务标记建议使用这个

@@ -15,7 +15,5 @@ public class MyApplication extends Application {
         super.onCreate();
         sContext = this;
         SmartShow.init(this);
-        SmartShow.toastSetting()
-                .actionWhenDuplicate(IToastSetting.ACTION_REPEAT);
     }
 }

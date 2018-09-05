@@ -364,12 +364,12 @@ public final class WeekViewPager extends ViewPager {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return mDelegate.isWeekViewScrollable() && super.onTouchEvent(ev);
+        return false && super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return mDelegate.isWeekViewScrollable() && super.onInterceptTouchEvent(ev);
+        return false && super.onInterceptTouchEvent(ev);
     }
 
     /**

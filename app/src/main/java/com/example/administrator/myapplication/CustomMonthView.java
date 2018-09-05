@@ -10,6 +10,8 @@ import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarUtil;
 import com.haibin.calendarview.MonthView;
 
+import java.util.Date;
+
 public class CustomMonthView extends MonthView {
 
     protected Paint mTextPaint = new Paint();
@@ -18,8 +20,6 @@ public class CustomMonthView extends MonthView {
     protected float mRadio;
     protected int mPadding;
     protected float mSchemeBaseLine;
-
-    private boolean mIsFirst = true;
 
     public CustomMonthView(Context context) {
         super(context);
@@ -56,8 +56,17 @@ public class CustomMonthView extends MonthView {
 
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme) {
+        Drawable d = ChooseManager.getSelectedDrawable();
         mSelectedPaint.setStyle(Paint.Style.FILL);
-        Drawable d = ChooseManager.isClick(calendar) ? ChooseManager.getSelectedDrawable() : ChooseManager.getCurDayDrawable();
+
+        if (calendar.isCurrentDay() && !ChooseManager.isClick(calendar)){
+            d = ChooseManager.getCurDayDrawable();
+        }
+
+        if (!ChooseManager.isClick(calendar) && !calendar.isCurrentDay()){
+            return true;
+        }
+
         d.setBounds(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding);
         d.draw(canvas);
         return true;
@@ -85,21 +94,21 @@ public class CustomMonthView extends MonthView {
         return mTextPaint.measureText(text);
     }
 
+
     @Override
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected) {
 
-        if (calendar.isCurrentDay() && !isSelected) {
+        if (calendar.isCurrentDay() && !isSelected && isRealCurDay(calendar)) {
             Drawable d = ChooseManager.getCurDayDrawable();
             d.setBounds(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding);
             d.draw(canvas);
         }
 
         if (ChooseManager.needDrawRangeSelected()){
-            if (ChooseManager.isCellNeedDraw(calendar))
+            if (ChooseManager.isCellNeedDraw(calendar)) {
 
-            if (ChooseManager.getCurSelected().equals(calendar)){
-                Drawable d = ChooseManager.getSelectedDrawable();
-                d.setBounds(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding);
+                Drawable d = ChooseManager.getRangeSelectedDrawable(calendar);
+                d.setBounds(x, y, x + mItemWidth, y + mItemHeight - mPadding);
                 d.draw(canvas);
             }
             ChooseManager.hasDraw(true);
@@ -136,6 +145,22 @@ public class CustomMonthView extends MonthView {
                             calendar.isCurrentMonth() ? mCurMonthLunarTextPaint : mOtherMonthLunarTextPaint);
         }
 
+
+        if (ChooseManager.needDrawRangeSelected()){
+            if (ChooseManager.isCellNeedDraw(calendar)) {
+                canvas.drawText(String.valueOf(calendar.getDay()), cx, mTextBaseLine + top,mSelectTextPaint);
+                canvas.drawText(calendar.getLunar(), cx, mTextBaseLine + y + mItemHeight / 10,mSelectedLunarTextPaint);
+            }
+
+        }
+
+    }
+
+    private Date mDate = new Date();
+    private boolean isRealCurDay(Calendar calendar) {
+       return CalendarUtil.getDate("yyyy",mDate) == calendar.getYear()
+               && CalendarUtil.getDate("MM",mDate) == calendar.getMonth()
+               && CalendarUtil.getDate("dd",mDate) == calendar.getDay();
     }
 
 }

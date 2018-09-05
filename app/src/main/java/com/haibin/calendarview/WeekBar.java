@@ -16,6 +16,7 @@
 package com.haibin.calendarview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -34,6 +35,7 @@ public class WeekBar extends LinearLayout {
         super(context);
         if ("com.haibin.calendarview.WeekBar".equals(getClass().getName())) {
             LayoutInflater.from(context).inflate(R.layout.cv_week_bar, this, true);
+            setBackgroundColor(Color.parseColor("#f6f6f6"));
         }
     }
 
@@ -48,7 +50,7 @@ public class WeekBar extends LinearLayout {
             setTextSize(mDelegate.getWeekTextSize());
             setTextColor(delegate.getWeekTextColor());
             setBackgroundColor(delegate.getWeekBackground());
-            setPadding(delegate.getCalendarPadding(), 0, delegate.getCalendarPadding(), 0);
+            setPadding(CalendarUtil.dipToPx(getContext(),12), 0, CalendarUtil.dipToPx(getContext(),12), 0);
         }
     }
 
@@ -128,15 +130,15 @@ public class WeekBar extends LinearLayout {
      * @return 或者周文本
      */
     private String getWeekString(int index, int weekStart) {
-        String[] weeks = getContext().getResources().getStringArray(R.array.week_string_array);
-
-        if (weekStart == CalendarViewDelegate.WEEK_START_WITH_SUN) {
-            return weeks[index];
-        }
-        if (weekStart == CalendarViewDelegate.WEEK_START_WITH_MON) {
-            return weeks[index == 6 ? 0 : index + 1];
-        }
-        return weeks[index == 0 ? 6 : index - 1];
+//        String[] weeks = getContext().getResources().getStringArray(R.array.week_string_array);
+//        if (weekStart == CalendarViewDelegate.WEEK_START_WITH_SUN) {
+//            return weeks[index];
+//        }
+//        if (weekStart == CalendarViewDelegate.WEEK_START_WITH_MON) {
+//            return weeks[index == 6 ? 0 : index + 1];
+//        }
+//        return weeks[index == 0 ? 6 : index - 1];
+        return mDelegate.getCurrentDay().getYear() + "年" + mDelegate.getCurrentDay().getMonth() + "月";
     }
 
     @Override

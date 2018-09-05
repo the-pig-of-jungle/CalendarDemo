@@ -33,7 +33,7 @@ import java.util.Map;
  * 代码量多，但是不影响阅读性
  */
 @SuppressWarnings({"DeprecatedIsStillUsed", "deprecation"})
-final class CalendarViewDelegate {
+public final class CalendarViewDelegate {
 
     /**
      * 周起始：周日
@@ -388,6 +388,15 @@ final class CalendarViewDelegate {
         if (mMaxYear >= MAX_YEAR) mMaxYear = 2055;
         array.recycle();
         init();
+    }
+
+
+    public void setCurrentDate(Date d){
+        mCurrentDate.setYear(CalendarUtil.getDate("yyyy", d));
+        mCurrentDate.setMonth(CalendarUtil.getDate("MM", d));
+        mCurrentDate.setDay(CalendarUtil.getDate("dd", d));
+        mCurrentDate.setCurrentDay(true);
+        LunarCalendar.setupLunarCalendar(mCurrentDate);
     }
 
     private void init() {

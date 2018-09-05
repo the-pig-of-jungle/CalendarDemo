@@ -2,25 +2,30 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_week"
+    android:visibility="gone"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="#FFFFFF"
-    android:minHeight="40dp"
+    android:layout_height="34dp"
+    android:background="#F6F6F6"
+    android:minHeight="34dp"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
     tools:ignore="HardcodedText">
 
     <TextView
+
+        android:paddingLeft="15dp"
+        android:background="#f6f6f6"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
         android:text="@string/sun"
-        android:textColor="#333333"
-        android:textSize="12sp" />
+        android:textColor="#222222"
+        android:textSize="14sp" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -30,6 +35,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -39,6 +45,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -47,6 +54,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -56,6 +64,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -65,6 +74,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

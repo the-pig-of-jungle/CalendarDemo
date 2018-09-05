@@ -31,7 +31,7 @@ public class CalendarUtil {
     private static final long ONE_DAY = 1000 * 3600 * 24;
 
     @SuppressLint("SimpleDateFormat")
-    static int getDate(String formatStr, Date date) {
+    public static int getDate(String formatStr, Date date) {
         SimpleDateFormat format = new SimpleDateFormat(formatStr);
         return Integer.parseInt(format.format(date));
     }
@@ -880,4 +880,6 @@ public class CalendarUtil {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
+
+
 }
